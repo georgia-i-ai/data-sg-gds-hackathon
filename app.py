@@ -1,15 +1,24 @@
 import json
+import logging
 import os
 
 import httpx
 import streamlit as st
 from dotenv import load_dotenv
 
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+)
+logger = logging.getLogger("uc_chat")
+
 load_dotenv()
 
 LITELLM_PROXY_URL = os.getenv("LITELLM_PROXY_URL", "http://localhost:4000")
 LITELLM_MODEL     = os.getenv("LITELLM_MODEL",      "gpt-4o")
 LITELLM_API_KEY   = os.getenv("LITELLM_API_KEY",    "anything")
+
+logger.info("Config — proxy: %s  model: %s", LITELLM_PROXY_URL, LITELLM_MODEL)
 
 # ── Static config ──────────────────────────────────────────────────────────────
 
@@ -236,10 +245,16 @@ def call_llm(llm_history: list[dict]) -> dict:
     messages = [{"role": "system", "content": build_system_prompt()}] + llm_history
     payload  = {"model": LITELLM_MODEL, "messages": messages}
 
+    # 5 s to connect, 60 s to receive the full response
+    timeout = httpx.Timeout(connect=5.0, read=60.0, write=10.0, pool=5.0)
+
     # Try with JSON mode first; fall back if the proxy doesn't support it
-    for extra in [{"response_format": {"type": "json_object"}}, {}]:
+    for attempt, extra in enumerate([{"response_format": {"type": "json_object"}}, {}], start=1):
+        label = "json_mode" if attempt == 1 else "plain"
+        logger.debug("LLM attempt %d (%s): POST %s/chat/completions model=%s history_len=%d",
+                     attempt, label, LITELLM_PROXY_URL, LITELLM_MODEL, len(llm_history))
         try:
-            with httpx.Client(timeout=60.0) as client:
+            with httpx.Client(timeout=timeout) as client:
                 resp = client.post(
                     f"{LITELLM_PROXY_URL}/chat/completions",
                     headers={
@@ -248,15 +263,31 @@ def call_llm(llm_history: list[dict]) -> dict:
                     },
                     json={**payload, **extra},
                 )
+            logger.debug("LLM attempt %d: HTTP %d", attempt, resp.status_code)
             if resp.status_code == 200:
                 raw = resp.json()["choices"][0]["message"]["content"]
+                logger.debug("LLM raw response (%d chars): %s", len(raw), raw[:200])
                 start, end = raw.find("{"), raw.rfind("}") + 1
                 if start >= 0 and end > 0:
-                    return json.loads(raw[start:end])
-        except Exception:
-            continue
+                    parsed = json.loads(raw[start:end])
+                    logger.info("LLM response parsed OK: stage=%s collected_keys=%s",
+                                parsed.get("stage"), list((parsed.get("collected") or {}).keys()))
+                    return parsed
+            else:
+                logger.warning("LLM attempt %d: non-200 body: %s", attempt, resp.text[:300])
+        except httpx.ConnectError as exc:
+            logger.error("LLM attempt %d: connection refused — is the proxy running at %s? (%s)",
+                         attempt, LITELLM_PROXY_URL, exc)
+            raise RuntimeError(
+                f"Cannot reach LLM proxy at {LITELLM_PROXY_URL}. "
+                "Check LITELLM_PROXY_URL in your .env and that the proxy is running."
+            ) from exc
+        except httpx.TimeoutException as exc:
+            logger.error("LLM attempt %d: timed out (%s)", attempt, exc)
+        except Exception as exc:
+            logger.exception("LLM attempt %d: unexpected error: %s", attempt, exc)
 
-    raise RuntimeError("LLM proxy returned no valid JSON response.")
+    raise RuntimeError("LLM proxy returned no valid JSON response after both attempts.")
 
 
 def apply_parsed(parsed: dict) -> str:
