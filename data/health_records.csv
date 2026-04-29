@@ -1,0 +1,134 @@
+record_id,person_id,person_name,date_of_birth,job_title,department,record_type,record_date,description,outcome_or_status,additional_notes
+R001,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,gp_appointment,2024-09-12,Lower back pain,Physiotherapy referral made,First presentation; pain worse after prolonged sitting
+R002,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,gp_appointment,2025-01-08,Back pain progress review,Some improvement reported; advised to continue physiotherapy,
+R003,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,gp_appointment,2025-06-15,Back pain flare-up,Naproxen prescribed; MRI lumbar spine requested,Unable to sit for extended periods
+R004,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,gp_appointment,2025-11-03,MRI results review,L4/L5 disc bulge confirmed; ongoing conservative management,Referred to pain clinic
+R005,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,gp_appointment,2026-02-20,Fitness-for-work review,Fit to work with adjustments (sit-stand desk; regular breaks),
+R006,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,investigation,2025-07-01,MRI lumbar spine,L4/L5 disc bulge with mild nerve root compression,No surgical intervention required at this stage
+R007,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,diagnosis,2024-09-12,Chronic lower back pain,Active,L4/L5 disc bulge confirmed on MRI
+R008,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,diagnosis,2024-05-10,Repetitive strain injury (right wrist),Resolved,Resolved following ergonomic adjustments
+R009,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,medication,2025-06-15,Naproxen 500mg,As required (max twice daily); current,For acute pain episodes
+R010,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,medication,2025-06-15,Omeprazole 20mg once daily,Current,Gastric protection while taking Naproxen
+R011,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,sick_leave,2025-06-16,Lower back pain flare-up,5 days (returned 2025-06-21),Fit note issued
+R012,P001,Alice Johnson,1990-07-14,Software Engineer,Technology,sick_leave,2025-11-10,Lower back pain,5 days (returned 2025-11-15),Self-certified
+R013,P002,Bob Williams,1973-03-22,Operations Manager,Operations,gp_appointment,2024-07-10,Diabetes annual review,Good control; HbA1c and lipids requested,BMI 29
+R014,P002,Bob Williams,1973-03-22,Operations Manager,Operations,gp_appointment,2024-10-22,Blood pressure review,BP 148/92; Ramipril dose increased to 10mg,Target BP not achieved on previous dose
+R015,P002,Bob Williams,1973-03-22,Operations Manager,Operations,gp_appointment,2025-03-15,Diabetes and BP review,HbA1c 53 mmol/mol (borderline); dietary advice given,
+R016,P002,Bob Williams,1973-03-22,Operations Manager,Operations,gp_appointment,2025-07-18,Routine follow-up,BP well controlled (132/84); diabetes stable,
+R017,P002,Bob Williams,1973-03-22,Operations Manager,Operations,gp_appointment,2026-01-14,Annual review,All parameters stable; continue current management,
+R018,P002,Bob Williams,1973-03-22,Operations Manager,Operations,investigation,2024-07-15,HbA1c blood test,55 mmol/mol (mildly elevated),Target < 48 mmol/mol
+R019,P002,Bob Williams,1973-03-22,Operations Manager,Operations,investigation,2025-03-20,HbA1c blood test,53 mmol/mol (borderline),Improved from previous result
+R020,P002,Bob Williams,1973-03-22,Operations Manager,Operations,investigation,2024-07-15,Fasting lipid profile,Total cholesterol 5.8 mmol/L; LDL 3.4 mmol/L,Statin therapy indicated
+R021,P002,Bob Williams,1973-03-22,Operations Manager,Operations,investigation,2026-01-15,HbA1c blood test,50 mmol/mol (borderline),Stable; continue monitoring
+R022,P002,Bob Williams,1973-03-22,Operations Manager,Operations,diagnosis,2022-04-18,Type 2 diabetes mellitus,Active,On oral medication; annual review ongoing
+R023,P002,Bob Williams,1973-03-22,Operations Manager,Operations,diagnosis,2023-09-05,Essential hypertension,Active,Managed with medication; dose increased Oct 2024
+R024,P002,Bob Williams,1973-03-22,Operations Manager,Operations,diagnosis,2024-07-15,Hypercholesterolaemia,Active,Statin therapy started
+R025,P002,Bob Williams,1973-03-22,Operations Manager,Operations,medication,2022-04-18,Metformin 1000mg twice daily,Current,Type 2 diabetes
+R026,P002,Bob Williams,1973-03-22,Operations Manager,Operations,medication,2023-09-05,Ramipril 10mg once daily,Current,Hypertension (dose increased Oct 2024)
+R027,P002,Bob Williams,1973-03-22,Operations Manager,Operations,medication,2024-07-15,Atorvastatin 40mg once daily,Current,Hypercholesterolaemia
+R028,P002,Bob Williams,1973-03-22,Operations Manager,Operations,sick_leave,2025-02-03,Respiratory infection,5 days (returned 2025-02-08),Self-certified
+R029,P003,Carol Brown,1997-11-05,Administration Assistant,HR,gp_appointment,2024-08-05,Low mood and anxiety,GAD and depression diagnosed; sertraline started,PHQ-9 score 16; GAD-7 score 14
+R030,P003,Carol Brown,1997-11-05,Administration Assistant,HR,gp_appointment,2024-10-14,Mental health review,Medication tolerated; CBT referral made,
+R031,P003,Carol Brown,1997-11-05,Administration Assistant,HR,gp_appointment,2025-01-20,Mental health review,Improvement noted; sertraline dose increased to 100mg,
+R032,P003,Carol Brown,1997-11-05,Administration Assistant,HR,gp_appointment,2025-04-09,Mental health review,Good response to CBT and medication,PHQ-9 score 11
+R033,P003,Carol Brown,1997-11-05,Administration Assistant,HR,gp_appointment,2025-08-12,Routine review,Managing well; continue current treatment,
+R034,P003,Carol Brown,1997-11-05,Administration Assistant,HR,gp_appointment,2026-03-03,Annual mental health review,Stable; PHQ-9 score 8; GAD-7 score 7,
+R035,P003,Carol Brown,1997-11-05,Administration Assistant,HR,diagnosis,2024-08-05,Generalised anxiety disorder,Active,PHQ-9 / GAD-7 monitored regularly
+R036,P003,Carol Brown,1997-11-05,Administration Assistant,HR,diagnosis,2024-08-05,Moderate depression,Active,Responding well to treatment
+R037,P003,Carol Brown,1997-11-05,Administration Assistant,HR,medication,2024-08-05,Sertraline 100mg once daily,Current,Anxiety and depression (dose titrated to 100mg Jan 2025)
+R038,P003,Carol Brown,1997-11-05,Administration Assistant,HR,medication,2024-08-05,Propranolol 10mg as required,Current,Acute anxiety symptoms
+R039,P003,Carol Brown,1997-11-05,Administration Assistant,HR,sick_leave,2024-08-12,Mental health (anxiety and depression),19 days (returned 2024-08-30),Fit note issued; phased return agreed
+R040,P003,Carol Brown,1997-11-05,Administration Assistant,HR,sick_leave,2024-12-09,Mental health,12 days (returned 2024-12-21),Fit note issued
+R041,P003,Carol Brown,1997-11-05,Administration Assistant,HR,sick_leave,2025-03-03,Mental health,5 days (returned 2025-03-08),Self-certified
+R042,P004,David Lee,1979-08-30,Field Engineer,Engineering,gp_appointment,2024-11-18,Palpitations and breathlessness,ECG confirms atrial fibrillation; urgent cardiology referral,New diagnosis
+R043,P004,David Lee,1979-08-30,Field Engineer,Engineering,gp_appointment,2024-12-02,AF management pre-cardiology,Rate control and anticoagulation initiated,
+R044,P004,David Lee,1979-08-30,Field Engineer,Engineering,gp_appointment,2025-02-10,Post-cardiology follow-up,Medication review; AF rate controlled,
+R045,P004,David Lee,1979-08-30,Field Engineer,Engineering,gp_appointment,2025-06-24,AF review,Well controlled; no further symptomatic episodes,
+R046,P004,David Lee,1979-08-30,Field Engineer,Engineering,gp_appointment,2026-01-30,Annual review,Stable; all parameters within target,
+R047,P004,David Lee,1979-08-30,Field Engineer,Engineering,investigation,2024-11-18,12-lead ECG,Atrial fibrillation confirmed; ventricular rate 110 bpm,Urgent cardiology referral made
+R048,P004,David Lee,1979-08-30,Field Engineer,Engineering,investigation,2025-01-10,Echocardiogram,Mild left atrial enlargement; no structural abnormality,Cardiology outpatient
+R049,P004,David Lee,1979-08-30,Field Engineer,Engineering,investigation,2025-01-15,24-hour Holter monitor,Persistent AF; average ventricular rate 78 bpm on medication,Rate control adequate
+R050,P004,David Lee,1979-08-30,Field Engineer,Engineering,diagnosis,2024-11-18,Atrial fibrillation,Active,Rate controlled; on anticoagulation
+R051,P004,David Lee,1979-08-30,Field Engineer,Engineering,diagnosis,2024-11-18,Essential hypertension,Active,Likely contributing factor to AF
+R052,P004,David Lee,1979-08-30,Field Engineer,Engineering,medication,2024-12-02,Bisoprolol 5mg once daily,Current,Rate control for atrial fibrillation
+R053,P004,David Lee,1979-08-30,Field Engineer,Engineering,medication,2024-12-02,Apixaban 5mg twice daily,Current,Anticoagulation for AF (stroke prevention)
+R054,P004,David Lee,1979-08-30,Field Engineer,Engineering,medication,2024-12-02,Amlodipine 5mg once daily,Current,Hypertension
+R055,P004,David Lee,1979-08-30,Field Engineer,Engineering,sick_leave,2024-11-25,Newly diagnosed atrial fibrillation,19 days (returned 2024-12-14),Fit note issued; returned with adjustment (no lone working initially)
+R056,P005,Emma Wilson,1984-02-18,Project Manager,PMO,gp_appointment,2024-10-05,Routine health check,Broadly well; vitamin D deficient; supplement recommended,
+R057,P005,Emma Wilson,1984-02-18,Project Manager,PMO,gp_appointment,2025-05-12,Chest infection,Amoxicillin prescribed; 1-week course,
+R058,P005,Emma Wilson,1984-02-18,Project Manager,PMO,gp_appointment,2026-02-11,Routine check-up,Well; vitamin D levels now normal,
+R059,P005,Emma Wilson,1984-02-18,Project Manager,PMO,investigation,2024-10-05,Full blood count and vitamin D,Vitamin D 32 nmol/L (deficient); FBC otherwise normal,Supplement prescribed
+R060,P005,Emma Wilson,1984-02-18,Project Manager,PMO,diagnosis,2024-10-05,Vitamin D deficiency,Resolved,Resolved following supplementation (confirmed Feb 2026)
+R061,P005,Emma Wilson,1984-02-18,Project Manager,PMO,sick_leave,2025-05-05,Chest infection,5 days (returned 2025-05-10),Self-certified
+R062,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,gp_appointment,2024-06-18,COPD annual review,Moderate COPD; spirometry done; inhaler technique reviewed,FEV1 58% predicted
+R063,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,gp_appointment,2024-09-30,Respiratory exacerbation,Antibiotics and prednisolone prescribed; 2-week sick note,Increased breathlessness and purulent sputum
+R064,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,gp_appointment,2025-01-15,Knee pain,Bilateral osteoarthritis confirmed on X-ray; physiotherapy referral,Difficulty with stairs and prolonged walking
+R065,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,gp_appointment,2025-04-22,COPD review,Stable; tiotropium continued,
+R066,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,gp_appointment,2025-10-08,Respiratory exacerbation,Antibiotics prescribed; 10-day sick note,Second exacerbation this year
+R067,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,gp_appointment,2026-03-11,COPD annual review,Moderate-severe COPD; FEV1 51% predicted; occupational impact discussed,Declining lung function year on year
+R068,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,investigation,2024-06-18,Spirometry,FEV1 58% predicted; FEV1/FVC ratio 0.62,Consistent with moderate COPD
+R069,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,investigation,2024-06-18,Chest X-ray,Hyperinflation consistent with COPD; no acute changes,
+R070,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,investigation,2025-01-20,Bilateral knee X-ray,Moderate osteoarthritis both knees; joint space narrowing,Physiotherapy and analgesia recommended
+R071,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,diagnosis,2019-03-14,COPD (moderate),Active,FEV1 declining annually; reviewed each year
+R072,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,diagnosis,2025-01-15,Osteoarthritis (bilateral knees),Active,Managed with physiotherapy and analgesia
+R073,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,diagnosis,2020-07-22,Essential hypertension,Active,Well controlled on medication
+R074,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,medication,2019-03-14,Tiotropium 18mcg once daily (inhaler),Current,COPD maintenance therapy
+R075,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,medication,2019-03-14,Salbutamol 100mcg as required (inhaler),Current,COPD rescue inhaler
+R076,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,medication,2020-07-22,Amlodipine 5mg once daily,Current,Hypertension
+R077,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,medication,2025-01-15,Naproxen 500mg as required,Current,Osteoarthritis pain (prescribed with omeprazole cover)
+R078,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,sick_leave,2024-09-30,COPD exacerbation,12 days (returned 2024-10-12),Fit note issued
+R079,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,sick_leave,2025-01-27,Knee pain (osteoarthritis flare),12 days (returned 2025-02-08),Fit note issued
+R080,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,sick_leave,2025-10-08,COPD exacerbation,10 days (returned 2025-10-18),Fit note issued; second exacerbation in 12 months
+R081,P006,Frank Taylor,1967-09-11,Senior Analyst,Finance,sick_leave,2026-01-05,COPD exacerbation,5 days (returned 2026-01-10),Self-certified
+R082,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,gp_appointment,2024-08-20,Frequent severe migraines,Migraine with aura diagnosed; MRI brain requested to exclude other causes,
+R083,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,gp_appointment,2024-11-14,MRI results and migraine management,MRI normal; topiramate prophylaxis started,
+R084,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,gp_appointment,2025-03-06,Migraine review,Frequency reduced from weekly to 1-2 per month; medication continued,
+R085,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,gp_appointment,2026-01-22,Annual review,Well controlled; continue current regimen,
+R086,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,investigation,2024-09-05,MRI brain with contrast,No structural abnormality; normal study,Migraine diagnosis confirmed clinically
+R087,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,diagnosis,2024-08-20,Migraine with aura,Active,Well controlled on prophylactic medication
+R088,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,medication,2024-11-14,Topiramate 50mg twice daily,Current,Migraine prophylaxis
+R089,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,medication,2024-08-20,Sumatriptan 50mg as required,Current,Acute migraine treatment
+R090,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,sick_leave,2024-11-04,Acute migraine,2 days (returned 2024-11-06),Self-certified
+R091,P007,Grace Martinez,1992-04-27,Data Scientist,Technology,sick_leave,2025-04-14,Acute migraine,2 days (returned 2025-04-16),Self-certified
+R092,P008,Henry Clark,1978-12-03,Team Leader,Operations,gp_appointment,2024-07-30,Routine health check,BP 158/96; hypertension confirmed; medication started,
+R093,P008,Henry Clark,1978-12-03,Team Leader,Operations,gp_appointment,2024-10-15,Hypertension follow-up,BP improved (144/88); lipid results reviewed; statin added,
+R094,P008,Henry Clark,1978-12-03,Team Leader,Operations,gp_appointment,2025-04-02,BP and cholesterol review,BP 136/84; cholesterol improving,
+R095,P008,Henry Clark,1978-12-03,Team Leader,Operations,gp_appointment,2026-02-25,Annual review,BP 132/82; all stable; continue current management,
+R096,P008,Henry Clark,1978-12-03,Team Leader,Operations,investigation,2024-07-30,Fasting lipid profile,Total cholesterol 6.1 mmol/L; LDL 3.9 mmol/L,Statin therapy indicated
+R097,P008,Henry Clark,1978-12-03,Team Leader,Operations,investigation,2024-10-15,12-lead ECG,Normal sinus rhythm; no hypertensive changes,Routine investigation
+R098,P008,Henry Clark,1978-12-03,Team Leader,Operations,diagnosis,2024-07-30,Essential hypertension,Active,Well controlled on medication
+R099,P008,Henry Clark,1978-12-03,Team Leader,Operations,diagnosis,2024-07-30,Hypercholesterolaemia,Active,Managed with statin
+R100,P008,Henry Clark,1978-12-03,Team Leader,Operations,medication,2024-07-30,Amlodipine 10mg once daily,Current,Hypertension
+R101,P008,Henry Clark,1978-12-03,Team Leader,Operations,medication,2024-10-15,Atorvastatin 20mg once daily,Current,Hypercholesterolaemia
+R102,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,gp_appointment,2024-06-05,Widespread pain and persistent fatigue,Extensive investigations ordered to exclude other causes,Symptoms present for 6+ months
+R103,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,gp_appointment,2024-09-18,Investigation results and diagnosis,Fibromyalgia and CFS diagnosed following exclusion of other conditions,
+R104,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,gp_appointment,2025-01-07,Pain and fatigue management review,Duloxetine added; referral to pain clinic made,
+R105,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,gp_appointment,2025-05-19,Medication review,Pregabalin added for neuropathic pain component,
+R106,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,gp_appointment,2025-09-10,Chronic condition review,Partial improvement; work capacity remains reduced,
+R107,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,gp_appointment,2026-02-04,Review,Ongoing challenges; occupational health referral recommended,
+R108,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,investigation,2024-06-10,Full blood count and inflammatory markers (ESR/CRP),Normal; no elevated inflammatory markers,Fibromyalgia not excluded by blood tests alone
+R109,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,investigation,2024-06-10,Thyroid function tests,Normal,Hypothyroidism excluded
+R110,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,investigation,2024-06-10,Vitamin D and B12,Vitamin D 38 nmol/L (low-normal); B12 normal,Vitamin D supplement recommended
+R111,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,investigation,2024-06-10,Rheumatoid factor and ANA,Negative,Autoimmune conditions excluded
+R112,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,diagnosis,2024-09-18,Fibromyalgia,Active,Diagnosis of exclusion; chronic pain management ongoing
+R113,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,diagnosis,2024-09-18,Chronic fatigue syndrome,Active,Significantly impacting work capacity
+R114,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,diagnosis,2024-09-18,Anxiety disorder,Active,Associated with chronic pain condition
+R115,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,medication,2025-01-07,Duloxetine 60mg once daily,Current,Fibromyalgia and anxiety
+R116,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,medication,2025-05-19,Pregabalin 150mg twice daily,Current,Neuropathic pain component of fibromyalgia
+R117,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,medication,2024-09-18,Amitriptyline 10mg at night,Current,Sleep disturbance and pain
+R118,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,sick_leave,2024-07-01,Widespread pain and fatigue (under investigation),19 days (returned 2024-07-20),Fit note issued
+R119,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,sick_leave,2024-10-14,Fibromyalgia / CFS flare,19 days (returned 2024-11-02),Fit note issued; phased return agreed
+R120,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,sick_leave,2025-02-17,Fibromyalgia flare,12 days (returned 2025-03-01),Fit note issued
+R121,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,sick_leave,2025-06-09,CFS and pain flare,12 days (returned 2025-06-21),Fit note issued
+R122,P009,Iris Davis,1986-06-15,Customer Service Advisor,Customer Services,sick_leave,2025-11-03,Fibromyalgia flare,12 days (returned 2025-11-15),Fit note issued
+R123,P010,James Thompson,1970-01-28,Director,Executive,gp_appointment,2024-05-14,Rectal bleeding and change in bowel habit,Urgent 2-week-wait referral made,
+R124,P010,James Thompson,1970-01-28,Director,Executive,gp_appointment,2024-07-22,Post-diagnosis support,Colorectal cancer confirmed; surgery scheduled; support and information provided,
+R125,P010,James Thompson,1970-01-28,Director,Executive,gp_appointment,2025-03-18,Post-treatment review,Surgery and adjuvant chemotherapy complete; in remission,
+R126,P010,James Thompson,1970-01-28,Director,Executive,gp_appointment,2025-09-11,Oncology follow-up review,Continued remission; CEA markers within normal range,
+R127,P010,James Thompson,1970-01-28,Director,Executive,gp_appointment,2026-03-25,Fitness-for-work assessment,Fit to return; graduated return over 4 weeks recommended,
+R128,P010,James Thompson,1970-01-28,Director,Executive,investigation,2024-06-01,CT chest abdomen and pelvis,Colorectal tumour confirmed; no distant metastases,Stage II disease
+R129,P010,James Thompson,1970-01-28,Director,Executive,investigation,2024-06-15,Colonoscopy and biopsy,Adenocarcinoma confirmed; T3N0M0,
+R130,P010,James Thompson,1970-01-28,Director,Executive,investigation,2025-09-11,Serum CEA tumour marker,CEA 1.8 ng/mL (normal; reference < 5 ng/mL),Continued remission confirmed
+R131,P010,James Thompson,1970-01-28,Director,Executive,investigation,2026-03-25,Serum CEA tumour marker,CEA 2.1 ng/mL (normal),Stable; surveillance continuing
+R132,P010,James Thompson,1970-01-28,Director,Executive,diagnosis,2024-06-15,Colorectal adenocarcinoma stage II (T3N0M0),In remission,Completed surgery and adjuvant chemotherapy; oncology surveillance ongoing
+R133,P010,James Thompson,1970-01-28,Director,Executive,sick_leave,2024-07-29,Cancer treatment (surgery and chemotherapy),220 days (returned 2025-03-07),Fit note issued; graduated return to work planned
