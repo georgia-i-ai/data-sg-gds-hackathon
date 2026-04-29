@@ -1,4 +1,3 @@
-import json
 import logging
 import sqlite3
 from functools import wraps
@@ -6,37 +5,7 @@ from pathlib import Path
 
 logger = logging.getLogger("ftw_tools")
 
-# ── Database ───────────────────────────────────────────────────────────────────
-
-DB_PATH = Path(__file__).parent.parent / "data" / "health_records.db"
-
-
-def _get_connection() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
-
-
-def _query(person_id: str, record_type: str) -> list[dict]:
-    with _get_connection() as conn:
-        rows = conn.execute(
-            "SELECT * FROM health_records "
-            "WHERE person_id = ? AND record_type = ? "
-            "ORDER BY record_date",
-            (person_id, record_type),
-        ).fetchall()
-    return [dict(r) for r in rows]
-
-
 # ── Consent types ──────────────────────────────────────────────────────────────
-
-CONSENT_TYPES = [
-    "gp_appointment",
-    "investigation",
-    "diagnosis",
-    "medication",
-    "sick_leave",
-]
 
 CONSENT_LABELS = {
     "gp_appointment": "GP appointment history",
@@ -84,33 +53,35 @@ class ConsentRegistry:
         """Return a dictionary of all consent statuses."""
         return self.consent_status
 
+    def requires_consent(self, data_type: str):
+        """Return a decorator that gates a function on this registry's consent for data_type."""
+        def decorator(func):
+            @wraps(func)
+            def wrapper(*args, **kwargs):
+                if not self.has_consent(data_type):
+                    label = CONSENT_LABELS.get(data_type, data_type)
+                    logger.warning(
+                        "Tool %s blocked — consent not granted for '%s'",
+                        func.__name__, data_type,
+                    )
+                    return {
+                        "error": "consent_not_granted",
+                        "data_type": data_type,
+                        "message": (
+                            f"Access to '{label}' has not been consented to. "
+                            "You must ask the user for consent before retrying."
+                        ),
+                    }
+                logger.info("Tool %s called: args=%s kwargs=%s", func.__name__, args[1:], kwargs)
+                return func(*args, **kwargs)
+            return wrapper
+        return decorator
 
-# Create decorators for checking consent status before executing a function
-def requires_consent(data_type):
-    """Decorator to check if consent has been given for a specific data type before executing a function."""
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            # When called as a class method, args[0] is self and carries its own registry
-            registry = getattr(args[0], "consent_registry", None) if args else None
-            if registry is None or not registry.has_consent(data_type):
-                label = CONSENT_LABELS.get(data_type, data_type)
-                logger.warning(
-                    "Tool %s blocked — consent not granted for '%s'",
-                    func.__name__, data_type,
-                )
-                return {
-                    "error": "consent_not_granted",
-                    "data_type": data_type,
-                    "message": (
-                        f"Access to '{label}' has not been consented to. "
-                        "You must ask the user for consent before retrying."
-                    ),
-                }
-            logger.info("Tool %s called: args=%s kwargs=%s", func.__name__, args[1:], kwargs)
-            return func(*args, **kwargs)
-        return wrapper
-    return decorator
+
+# Module-level singleton — import and call registry.grant() / registry.revoke() from the app
+registry = ConsentRegistry(list(CONSENT_LABELS.keys()))
+# Expose as a bare name so @requires_consent(...) works at class definition time
+requires_consent = registry.requires_consent
 
 
 # ------ Tools ------
@@ -150,20 +121,39 @@ _RECORD_CONFIG: dict[str, tuple[str, dict[str, str]]] = {
     }),
 }
 
+# Temporary
+DB_PATH = Path(__file__).parent.parent / "data" / "health_records.db"
 
 class Tools:
     """Tools available to the agent for fetching health data.
     Each method requiring sensitive data is gated by the consent registry.
     """
+    def __init__(self, db_path: str | Path = DB_PATH):
+        self.db_path = db_path
+        logger.info("Tools initialized with DB path: %s", self.DB_PATH)
 
-    def __init__(self, consent_registry: ConsentRegistry):
-        self.consent_registry = consent_registry
+    # ── Database helpers ───────────────────────────────────────────────────────
+
+    def _get_connection(self) -> sqlite3.Connection:
+        conn = sqlite3.connect(self.db_path)
+        conn.row_factory = sqlite3.Row
+        return conn
+
+    def _query(self, person_id: str, record_type: str) -> list[dict]:
+        with self._get_connection() as conn:
+            rows = conn.execute(
+                "SELECT * FROM health_records "
+                "WHERE person_id = ? AND record_type = ? "
+                "ORDER BY record_date",
+                (person_id, record_type),
+            ).fetchall()
+        return [dict(r) for r in rows]
 
     # ── No-consent tools ───────────────────────────────────────────────────────
 
     def list_people(self) -> dict:
         """List everyone in the database. No consent required."""
-        with _get_connection() as conn:
+        with self._get_connection() as conn:
             rows = conn.execute(
                 "SELECT DISTINCT person_id, person_name, job_title, department "
                 "FROM health_records ORDER BY person_id"
@@ -172,7 +162,7 @@ class Tools:
 
     def get_person_info(self, person_id: str) -> dict:
         """Return basic demographic and employment information. No consent required."""
-        with _get_connection() as conn:
+        with self._get_connection() as conn:
             row = conn.execute(
                 "SELECT DISTINCT person_id, person_name, date_of_birth, job_title, department "
                 "FROM health_records WHERE person_id = ? LIMIT 1",
@@ -188,7 +178,7 @@ class Tools:
         """Query the DB and map rows to the typed output schema. No consent check here —
         that is the decorator's responsibility on each public method."""
         output_key, field_map = _RECORD_CONFIG[data_type]
-        records = _query(person_id, data_type)
+        records = self._query(person_id, data_type)
         logger.info("Retrieved %d %s records for person_id=%s", len(records), data_type, person_id)
         return {
             "person_id": person_id,
