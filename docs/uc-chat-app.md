@@ -156,8 +156,9 @@ Certain fields are masked in the sidebar so that values are not displayed in ful
 ## Key files
 
 ```
-app.py                          — Streamlit app (single file)
 pyproject.toml                  — dependencies (managed with uv)
+uv.lock
 .env.example                    — configuration template
+univeral_credit_app/app.py      — Streamlit app (single file)
 docs/uc-chat-app.md             — this file
 ```
