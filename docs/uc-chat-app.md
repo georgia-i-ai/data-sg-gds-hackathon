@@ -49,7 +49,7 @@ Install dependencies and start the dev server:
 
 ```bash
 uv sync
-uv run streamlit run app.py
+uv run streamlit run universal_credit_app/app.py
 ```
 
 Configuration is via a `.env` file (copy `.env.example` to get started):
