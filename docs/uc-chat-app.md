@@ -160,5 +160,4 @@ app.py                          — Streamlit app (single file)
 pyproject.toml                  — dependencies (managed with uv)
 .env.example                    — configuration template
 docs/uc-chat-app.md             — this file
-docs/fitness-to-work-brainstorm.md  — design notes for the second app
 ```
