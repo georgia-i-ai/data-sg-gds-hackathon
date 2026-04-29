@@ -121,6 +121,17 @@ _RECORD_CONFIG: dict[str, tuple[str, dict[str, str]]] = {
     }),
 }
 
+_PERSON_ID_PARAM = {
+    "type": "object",
+    "properties": {
+        "person_id": {
+            "type": "string",
+            "description": "The person's ID (e.g. 'P001'). Call list_people first to look up IDs.",
+        }
+    },
+    "required": ["person_id"],
+}
+
 # Temporary
 DB_PATH = Path(__file__).parent.parent / "data" / "health_records.db"
 
@@ -130,7 +141,7 @@ class Tools:
     """
     def __init__(self, db_path: str | Path = DB_PATH):
         self.db_path = db_path
-        logger.info("Tools initialized with DB path: %s", self.DB_PATH)
+        logger.info("Tools initialized with DB path: %s", self.db_path)
 
     # ── Database helpers ───────────────────────────────────────────────────────
 
@@ -212,3 +223,45 @@ class Tools:
     def get_sick_leave(self, person_id: str) -> dict:
         """Return sick leave history for a person."""
         return self._fetch_and_map("sick_leave", person_id)
+
+    # ── Schema generation ──────────────────────────────────────────────────────
+
+    def get_schemas(self) -> list[dict]:
+        """Return tool schemas for the LLM, generated from the registry and _RECORD_CONFIG.
+
+        Always includes the no-consent tools. Adds a schema for each health-data
+        tool whose consent has been granted — so the LLM only sees tools it may call.
+        Adding a new data type only requires updating CONSENT_LABELS and _RECORD_CONFIG.
+        """
+        schemas = [
+            {
+                "type": "function",
+                "function": {
+                    "name": "list_people",
+                    "description": "List all people in the database with their IDs, names, job titles, and departments. Call this first to find the correct person_id.",
+                    "parameters": {"type": "object", "properties": {}, "required": []},
+                },
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "get_person_info",
+                    "description": "Get basic demographic and employment information for a person. No consent required.",
+                    "parameters": _PERSON_ID_PARAM,
+                },
+            },
+        ]
+
+        for data_type, label in CONSENT_LABELS.items():
+            if registry.has_consent(data_type):
+                output_key, _ = _RECORD_CONFIG[data_type]
+                schemas.append({
+                    "type": "function",
+                    "function": {
+                        "name": f"get_{output_key}",
+                        "description": f"Get {label} for a person.",
+                        "parameters": _PERSON_ID_PARAM,
+                    },
+                })
+
+        return schemas
