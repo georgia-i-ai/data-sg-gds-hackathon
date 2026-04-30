@@ -232,6 +232,13 @@ st.markdown(
 
 tools = Tools()
 
+# Pre-populate checkbox session state from fetched_types before the sidebar renders.
+# Streamlit silently ignores st.session_state[key] = value when set after a widget
+# has already been instantiated in the current run, so this must happen here.
+if st.session_state.awaiting_consent:
+    for _dt in st.session_state.fetched_types:
+        st.session_state[f"cb_{_dt}_{st.session_state.reset_count}"] = True
+
 # ── Sidebar ────────────────────────────────────────────────────────────────────
 
 with st.sidebar:
@@ -250,18 +257,14 @@ with st.sidebar:
     if st.session_state.person_id:
         st.divider()
         st.markdown("**Your health data**")
-        if st.session_state.awaiting_consent:
-            st.caption("Answer each question in the chat to share your data.")
-        else:
-            st.caption("You can tick or untick categories at any time.")
+        st.caption("Answer each question in the chat to share your data.")
+        st.caption("You can tick or untick categories at any time.")
 
         for data_type, label in CONSENT_LABELS.items():
             # Disabled during the guided flow to keep the chat as the single input
             checked = st.checkbox(
                 label,
-                key=f"cb_{data_type}_{st.session_state.reset_count}",
-                disabled=st.session_state.awaiting_consent,
-            )
+                key=f"cb_{data_type}_{st.session_state.reset_count}")
             # After guided flow, checkboxes are live — sync to registry
             if not st.session_state.awaiting_consent:
                 if checked:
@@ -271,9 +274,6 @@ with st.sidebar:
                         registry.revoke(data_type)
                     except ValueError:
                         pass
-
-            if data_type in st.session_state.fetched_types:
-                st.caption("✅ Retrieved")
 
 # ── Main area ──────────────────────────────────────────────────────────────────
 
