@@ -5,7 +5,7 @@ import os
 import httpx
 from dotenv import load_dotenv
 
-from fitness_to_work_app.tools import Tools
+from tools import Tools
 
 load_dotenv()
 

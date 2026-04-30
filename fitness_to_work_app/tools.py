@@ -133,7 +133,7 @@ _PERSON_ID_PARAM = {
 }
 
 # Temporary
-DB_PATH = Path(__file__).parent.parent / "data" / "health_records.db"
+DB_PATH = Path(__file__).parent / "data" / "health_records.db"
 
 class Tools:
     """Tools available to the agent for fetching health data.
